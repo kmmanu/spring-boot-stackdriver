@@ -15,12 +15,12 @@
         sudo service stackdriver-agent start
     ```
  * Configure credentials to push metrics to Stackdriver Monitoring
-    * Provide the role `roles/monitoring.metricWriter` to the service account of Compute Engine VM
+    * Provide the role `roles/monitoring.metricWriter` to the service account of Compute Engine VM, in IAM
    
 ### Build the jar and push to GCP Compute Engine VM
 * Build 
     * `mvn clean package`
 * Push to Cloud storage bucket
-    * `gsutil cp "target\demo-0.0.1-SNAPSHOT.jar" gs://<BUCKET_NAME>/demo.jar`
+    * `gsutil cp "target\metrics-stackdriver-0.0.1-SNAPSHOT.jar" gs://<BUCKET_NAME>/demo.jar`
 * Start the application.
-    * `` 
+    * `java -jar demo.jar --GCP_PROJECT_ID=<project id>` 

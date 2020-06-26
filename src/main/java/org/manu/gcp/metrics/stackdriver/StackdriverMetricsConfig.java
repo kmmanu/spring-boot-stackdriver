@@ -4,12 +4,16 @@ import io.micrometer.stackdriver.StackdriverConfig;
 import io.micrometer.stackdriver.StackdriverMeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @Slf4j
+@ConditionalOnExpression(
+        value = "${management.metrics.export.stackdriver.enabled:true}"
+)
 @ConditionalOnProperty(value = "GCP_PROJECT_ID")
 public class StackdriverMetricsConfig {
 
